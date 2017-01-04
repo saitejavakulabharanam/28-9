@@ -30,8 +30,8 @@
 <p style="margin-top:10px"><b style="font-size:17px">ADD Category</b></p>
 <form:form method="POST" action="Categoryreg" commandName="category">
 <table style="width:400px;height:250px;">
-<tr><td>Category Id:</td><td><form:input type="text" path="id" autofocus="autofocus"/></td></tr>
-<tr><td>Category Name:</td><td><form:input type="text" path="name" /></td></tr>
+<tr><td>Category Id:</td><td><form:input type="text" path="id" autofocus="autofocus"/><form:errors path="id" /></td></tr>
+<tr><td>Category Name:</td><td><form:input type="text" path="name" /><form:errors path="name" /></td></tr>
 <tr><td>Description:</td><td><form:textarea path="description" rows="4" cols="30"/></td></tr>
 <tr><td>Main Category:</td><td>
 <form:select path="label">
@@ -59,11 +59,11 @@
 <form:form method="POST" action="Updateproduct" commandName="product" enctype="multipart/form-data">
 <table style="width:400px;height:365px">
 <tr><td>Product Id:</td><td><form:input type="text" path="id" value="${prod.id}" readonly="true"/></td></tr>
-<tr><td>Product Name:</td><td><form:input type="text" path="name" value="${prod.name}"/></td></tr>
+<tr><td>Product Name:</td><td><form:input type="text" path="name" value="${prod.name}"/><form:errors path="name" /></td></tr>
 <tr><td>Description:</td><td><textarea name="description" rows="4" cols="30">${prod.description}</textarea></td></tr>
-<tr><td>Price:</td><td><form:input path="price" type="number" value="${prod.price}"/></td></tr>
-<tr><td>Brand:</td><td><form:input path="brand" type="text" value="${prod.brand}"/></td></tr>
-<tr><td>Quantity:</td><td><form:input path="quantity" type="number" value="${prod.quantity}"/></td></tr>
+<tr><td>Price:</td><td><form:input path="price" type="number" value="${prod.price}"/><form:errors path="price" /></td></tr>
+<tr><td>Brand:</td><td><form:input path="brand" type="text" value="${prod.brand}"/><form:errors path="brand" /></td></tr>
+<tr><td>Quantity:</td><td><form:input path="quantity" type="number" value="${prod.quantity}"/><form:errors path="quantity" /></td></tr>
 <tr><td>Image:</td><td><form:input path="image" type="file" /></td></tr>
 <tr><td>Category Name:</td>
 <td><form:select path="category.name" items="${categoryList}" itemValue="name" itemLabel="name"></form:select></td></tr>
@@ -78,12 +78,12 @@
 <p style="margin-top:10px"><b style="font-size:17px">ADD Product</b></p>
 <form:form method="POST" action="Productreg" commandName="product" enctype="multipart/form-data">
 <table style="width:400px;height:380px">
-<tr><td>Product Id:</td><td><form:input type="text" path="id" autofocus="autofocus"/></td></tr>
-<tr><td>Product Name:</td><td><form:input type="text" path="name" /></td></tr>
+<tr><td>Product Id:</td><td><form:input type="text" path="id" autofocus="autofocus"/><form:errors path="id" /></td></tr>
+<tr><td>Product Name:</td><td><form:input type="text" path="name" /><form:errors path="name" /></td></tr>
 <tr><td>Description:</td><td><form:textarea path="description" rows="4" cols="30" /></td></tr>
-<tr><td>Price:</td><td><form:input path="price" type="number" /></td></tr>
-<tr><td>Brand:</td><td><form:input path="brand" type="text"/></td></tr>
-<tr><td>Quantity:</td><td><form:input path="quantity" type="number" /></td></tr>
+<tr><td>Price:</td><td><form:input path="price" type="number" /><form:errors path="price" /></td></tr>
+<tr><td>Brand:</td><td><form:input path="brand" type="text"/><form:errors path="brand" /></td></tr>
+<tr><td>Quantity:</td><td><form:input path="quantity" type="number" /><form:errors path="quantity" /></td></tr>
 <tr><td>Image:</td><td><form:input path="image" type="file" /></td></tr>
 <tr><td>Category Name:</td>
 <td><form:select path="category.name" items="${categoryList}" itemValue="name" itemLabel="name"></form:select></td></tr>
@@ -104,7 +104,7 @@
 <form:form method="POST" action="Updatesupplier" commandName="supplier">
 <table style="width:400px;height:200px">
 <tr><td>Supplier Id:</td><td><form:input type="text" path="id" value="${supp.id}" readonly="true"/></td></tr>
-<tr><td>Supplier Name:</td><td><form:input type="text" path="name" value="${supp.name}"/></td></tr>
+<tr><td>Supplier Name:</td><td><form:input type="text" path="name" value="${supp.name}"/><form:errors path="name" /></td></tr>
 <tr><td>Address:</td><td><textarea name="address" rows="4" cols="30">${supp.address}</textarea></td></tr>
 </table><br>
 <input type="submit" value="Update" class="btn btn-primary shadow" style="height:38px"/>
@@ -114,8 +114,8 @@
 <p style="margin-top:10px"><b style="font-size:17px">ADD Supplier</b></p>
 <form:form method="POST" action="Supplierreg" commandName="supplier">
 <table style="width:400px;height:200px">
-<tr><td>Supplier Id:</td><td><form:input type="text" path="id" autofocus="autofocus"/></td></tr>
-<tr><td>Supplier Name:</td><td><form:input type="text" path="name" /></td></tr>
+<tr><td>Supplier Id:</td><td><form:input type="text" path="id" autofocus="autofocus"/><form:errors path="id" /></td></tr>
+<tr><td>Supplier Name:</td><td><form:input type="text" path="name" /><form:errors path="name" /></td></tr>
 <tr><td>Address:</td><td><form:textarea path="address" rows="4" cols="30" /></td></tr>
 </table><br>
 <input type="submit" value="Add" class="btn btn-primary shadow" style="height:38px"/><input type="reset" value="Reset" class="btn btn-danger shadow" style="margin-left:80px;height:38px"/>
@@ -135,7 +135,7 @@
 <tr><td>Email:</td><td><form:input type="email" path="mail" value="${user.mail}"/></td></tr>
 <tr><td>Address:</td><td><textarea name="address" rows="4" cols="30">${user.address}</textarea></td></tr>
 <tr><td>Contact:</td><td><form:input type="text" path="contact" value="${user.contact}"/></td></tr>
-<tr><td>Role:</td><td><form:input type="text" path="role" value="${user.role}"/></td></tr>
+<tr><td>Role:</td><td><form:input type="text" path="role" value="${user.role}"/><form:errors path="role" /></td></tr>
 </table><br>
 <input type="submit" value="Update" class="btn btn-primary shadow" style="height:38px"/>
 </form:form>
@@ -163,14 +163,17 @@ ADD User<br><br>
 <p style="margin-top:10px"><b style="font-size:17px">Edit Shipping Address</b></p>
 <form:form method="POST" action="addressupdate" commandName="billingAddress">
 <table style="width:400px;height:250px;">
-<tr><td>User Name:</td><td><form:input type="text" path="user_Id" value="${username}" readonly="true"/></td></tr>
+<tr><td>User Id:</td><td><form:input type="text" path="user_Id" value="${username}" readonly="true"/></td></tr>
+
 <tr><td>Address Id:</td><td><form:input type="numbet" path="id" value="${address.id}" readonly="true"/></td></tr>
-<tr><td>House-No:</td><td><form:input type="text" path="houseno" value="${address.houseno}" autofocus="autofocus"/></td></tr>
-<tr><td>Street:</td><td><form:input type="text" path="street" value="${address.street}"/></td></tr>
-<tr><td>City:</td><td><form:input type="text" path="city" value="${address.city}"/></td></tr>
-<tr><td>State:</td><td><form:input path="state" type="text" value="${address.state}"/></td></tr>
-<tr><td>Country:</td><td><form:input type="text" path="country" value="${address.country}"/></td></tr>
-<tr><td>Zip-code:</td><td><form:input type="text" path="zip" value="${address.zip}"/></td></tr>
+<tr><td>Name:</td><td><form:input type="text" path="name" /><form:errors path="name" /></td></tr>
+<tr><td>House-No:</td><td><form:input type="text" path="houseno" value="${address.houseno}" autofocus="autofocus"/><form:errors path="houseno" /></td></tr>
+<tr><td>Street:</td><td><form:input type="text" path="street" value="${address.street}"/><form:errors path="street" /></td></tr>
+<tr><td>City:</td><td><form:input type="text" path="city" value="${address.city}"/><form:errors path="city" /></td></tr>
+<tr><td>State:</td><td><form:input path="state" type="text" value="${address.state}"/><form:errors path="state" /></td></tr>
+<tr><td>Country:</td><td><form:input type="text" path="country" value="${address.country}"/><form:errors path="country" /></td></tr>
+<tr><td>Zip-code:</td><td><form:input type="text" path="zip" value="${address.zip}"/><form:errors path="zip" /></td></tr>
+<tr><td>Contact:</td><td><form:input type="text" path="contact" /><form:errors path="contact" /></td></tr>
 </table><br>
 <input type="submit" value="Update" class="btn btn-primary shadow" style="height:38px"/>
 </form:form>
@@ -180,13 +183,15 @@ ADD User<br><br>
 <p style="margin-top:10px"><b style="font-size:17px">ADD Shipping Address</b></p>
 <form:form method="POST" action="addressreg" commandName="billingAddress">
 <table style="width:400px;height:250px;">
-<tr><td>User Name:</td><td><form:input type="text" path="user_Id" value="${username}" readonly="true"/></td></tr>
-<tr><td>House-No:</td><td><form:input type="text" path="houseno" autofocus="autofocus"/></td></tr>
-<tr><td>Street:</td><td><form:input type="text" path="street" /></td></tr>
-<tr><td>City:</td><td><form:input type="text" path="city" /></td></tr>
-<tr><td>State:</td><td><form:input path="state" type="text"/></td></tr>
-<tr><td>Country:</td><td><form:input type="text" path="country" /></td></tr>
-<tr><td>Zip-code:</td><td><form:input type="text" path="zip" /></td></tr>
+<tr><td>User Id:</td><td><form:input type="text" path="user_Id" value="${username}" readonly="true"/></td></tr>
+<tr><td>Name:</td><td><form:input type="text" path="name" /><form:errors path="name" /></td></tr>
+<tr><td>House-No:</td><td><form:input type="text" path="houseno" autofocus="autofocus"/><form:errors path="houseno" /></td></tr>
+<tr><td>Street:</td><td><form:input type="text" path="street" /><form:errors path="street" /></td></tr>
+<tr><td>City:</td><td><form:input type="text" path="city" /><form:errors path="city" /></td></tr>
+<tr><td>State:</td><td><form:input path="state" type="text"/><form:errors path="state" /></td></tr>
+<tr><td>Country:</td><td><form:input type="text" path="country" /><form:errors path="country" /></td></tr>
+<tr><td>Zip-code:</td><td><form:input type="text" path="zip" /><form:errors path="zip" /></td></tr>
+<tr><td>Contact:</td><td><form:input type="text" path="contact" /><form:errors path="contact" /></td></tr>
 </table>
 <br>
 <input type="submit" value="Add" class="btn btn-primary shadow" style="height:38px"/><input type="reset" value="Reset" class="btn btn-danger shadow" style="margin-left:80px;height:38px"/>
