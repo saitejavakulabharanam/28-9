@@ -45,7 +45,11 @@ public class SupplierController {
 	public ModelAndView Supplierregister(@Valid @ModelAttribute("supplier") Supplier supp, BindingResult result,
 			HttpServletRequest request) throws IOException {
 		ModelAndView mv = new ModelAndView("manageall");
-		supplierDAO.save(supp);
+		if(result.hasErrors()){
+			mv.addObject("add", 2);}
+		else{
+			supplierDAO.save(supp);	
+		}
 		mv.addObject("listsupp", 0);
 		mv.addObject("supplierList", supplierDAO.list());
 		return mv;
@@ -71,6 +75,7 @@ public class SupplierController {
 		 * String id=request.getParameter("id"); System.out.println(id);
 		 */
 		ModelAndView mv = new ModelAndView("manageall");
+		
 		supp.setAddress(address);
 		supplierDAO.update(supp);
 		mv.addObject("listsupp", 0);

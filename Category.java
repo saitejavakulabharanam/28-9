@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -18,8 +19,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class Category {
 	@Id
+	@NotBlank(message="Specify Id")
 	private String id;
+	@NotBlank(message="Specify Name")
 	private String name;
+	@NotBlank
 	private String description;
 	private String label;
 

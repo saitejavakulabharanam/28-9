@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,9 +23,12 @@ import org.springframework.web.multipart.MultipartFile;
 @Component
 public class Product {
 	@Id
+	@NotBlank(message="Specify Id")
 	private String id;
+	@NotBlank(message="Specify Name")
 	private String name;
 	private String description;
+	@NotBlank(message="Specify Brand")
 	private String brand;
 	@Min(1)
 	private int price;

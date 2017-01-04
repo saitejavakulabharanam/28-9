@@ -51,10 +51,13 @@ public class CartController {
 		return mv;
 	}
 
+	
+	
+	
 	@RequestMapping(value = "/buy{id}&{pid}", method = RequestMethod.POST)
 	public ModelAndView buyproductPage(@Valid @PathVariable("id") String id, @PathVariable("pid") String pid,
 			@RequestParam("quantity") String quantity, HttpSession session) throws Exception {
-
+		
 int z=0;
 for(UserDetails camp:userDetailsDAO.checksignin(id))
 {z=z+1;

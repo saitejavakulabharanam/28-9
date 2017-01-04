@@ -9,6 +9,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -16,7 +17,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class Supplier {
 	@Id
+	@NotBlank(message="Specify Id")
 	private String id;
+	@NotBlank(message="Specify Name")
 	private String name;
 	private String address;
 	

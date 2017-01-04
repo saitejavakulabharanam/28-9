@@ -77,19 +77,57 @@ public class HomeController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/main")
+	@RequestMapping(value="/Home")
 	public ModelAndView HomePage() {
 		ModelAndView mv = new ModelAndView("Home");
 		return mv;
 	}
 	
+	@RequestMapping(value="/uncons")
+	public ModelAndView constPage() {
+		ModelAndView mv = new ModelAndView("underconstruction");
+		return mv;
+	}
 	@RequestMapping("/navselect{id}")
 	public ModelAndView siteviewPage(@PathVariable("id")String id){
 		ModelAndView mv = new ModelAndView("siteview");
+		//System.out.println(productDAO.getbrands(id));
+		mv.addObject("nextpagecatid", id);
 		mv.addObject("siteproducts", productDAO.getbycat(id));
 		return mv;
 	}
 	
+	@RequestMapping(value="/billingselect{id}")
+	public ModelAndView paymentPage(@PathVariable("id")String id) {
+		ModelAndView mv = new ModelAndView("cardpage");
+		return mv;
+	}
+	
+	@RequestMapping(value="/cashondel{id}")
+	public ModelAndView cashondelPage(@PathVariable("id")String id) {
+		ModelAndView mv = new ModelAndView("endpage");
+		for(Cart temp:cartDAO.mycartproducts(id))
+		{
+			product=productDAO.getbyid(temp.getProd_Id());
+			product.setQuantity(product.getQuantity()-temp.getQuantity());
+			productDAO.update(product);
+		}
+		mv.addObject("byemessage", "Please Keep your cash with you at the time of Delivery");
+		return mv;
+	}
+	
+	@RequestMapping(value="/creditdel{id}")
+	public ModelAndView creditdelPage(@PathVariable("id")String id) {
+		ModelAndView mv = new ModelAndView("endpage");
+		for(Cart temp:cartDAO.mycartproducts(id))
+		{
+			product=productDAO.getbyid(temp.getProd_Id());
+			product.setQuantity(product.getQuantity()-temp.getQuantity());
+			productDAO.update(product);
+		}
+		mv.addObject("byemessage", "You have paid the Amount Your Product will be delivered Shortly");
+		return mv;
+	}
 	
 	
 	
@@ -101,10 +139,76 @@ public class HomeController {
 		mv.addObject("siteproducts", productDAO.getbycat(category.getId()));
 		return mv;
 	}
-	
-	
-	
-	
+	@RequestMapping("/gosport")
+	public ModelAndView goPage1(){
+		ModelAndView mv = new ModelAndView("siteview");
+		category=categoryDAO.getbyname("Sports");
+		mv.addObject("siteproducts", productDAO.getbycat(category.getId()));
+		return mv;
+	}
+	@RequestMapping("/gotab")
+	public ModelAndView goPage2(){
+		ModelAndView mv = new ModelAndView("siteview");
+		category=categoryDAO.getbyname("Tablets");
+		mv.addObject("siteproducts", productDAO.getbycat(category.getId()));
+		return mv;
+	}
+	@RequestMapping("/gotowel")
+	public ModelAndView goPage3(){
+		ModelAndView mv = new ModelAndView("siteview");
+		category=categoryDAO.getbyname("Towels");
+		mv.addObject("siteproducts", productDAO.getbycat(category.getId()));
+		return mv;
+	}
+	@RequestMapping("/gobulb")
+	public ModelAndView goPage4(){
+		ModelAndView mv = new ModelAndView("siteview");
+		category=categoryDAO.getbyname("Bulbs");
+		mv.addObject("siteproducts", productDAO.getbycat(category.getId()));
+		return mv;
+	}
+	@RequestMapping("/gotv")
+	public ModelAndView goPage5(){
+		ModelAndView mv = new ModelAndView("siteview");
+		category=categoryDAO.getbyname("TV");
+		mv.addObject("siteproducts", productDAO.getbycat(category.getId()));
+		return mv;
+	}
+	@RequestMapping("/gowash")
+	public ModelAndView goPage6(){
+		ModelAndView mv = new ModelAndView("siteview");
+		category=categoryDAO.getbyname("Washing Machines");
+		mv.addObject("siteproducts", productDAO.getbycat(category.getId()));
+		return mv;
+	}
+	@RequestMapping("/golap")
+	public ModelAndView goPage7(){
+		ModelAndView mv = new ModelAndView("siteview");
+		category=categoryDAO.getbyname("Laptops");
+		mv.addObject("siteproducts", productDAO.getbycat(category.getId()));
+		return mv;
+	}
+	@RequestMapping("/gohead")
+	public ModelAndView goPage8(){
+		ModelAndView mv = new ModelAndView("siteview");
+		category=categoryDAO.getbyname("Head Phones");
+		mv.addObject("siteproducts", productDAO.getbycat(category.getId()));
+		return mv;
+	}
+	@RequestMapping("/gofan")
+	public ModelAndView goPage9(){
+		ModelAndView mv = new ModelAndView("siteview");
+		category=categoryDAO.getbyname("Fans");
+		mv.addObject("siteproducts", productDAO.getbycat(category.getId()));
+		return mv;
+	}
+	@RequestMapping("/gobook")
+	public ModelAndView goPage10(){
+		ModelAndView mv = new ModelAndView("siteview");
+		category=categoryDAO.getbyname("Books");
+		mv.addObject("siteproducts", productDAO.getbycat(category.getId()));
+		return mv;
+	}
 	
 	
 	@RequestMapping("/rolex")
@@ -154,11 +258,6 @@ public class HomeController {
 		session.setAttribute("kidcat",categoryDAO.getbylabel("kids") );
 		session.setAttribute("homecat",categoryDAO.getbylabel("home") );
 		session.setAttribute("bookcat",categoryDAO.getbylabel("books") );		
-		
-		
-		
-		
-		
 		session.setAttribute("cartvalue", cartDAO.totalproducts(userdetails.getId()));
 		@SuppressWarnings("unchecked")
 		Collection<GrantedAuthority> authorities =(Collection<GrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
@@ -180,34 +279,5 @@ public class HomeController {
 		
 	}
 	
-
 	
-/*	@RequestMapping("/perform_logout")
-	public ModelAndView logout(HttpServletRequest request,HttpSession session){
-		System.out.println("logout");
-		ModelAndView mv=new ModelAndView("home");
-		session.invalidate();
-		session=request.getSession(true);
-		
-		mv.addObject("logOutMessage", "You have successfully logged out!");
-		mv.addObject("loggedout","true");
-		
-		return mv;
-}*/
-
-	
-	
-	
-	
-	@RequestMapping("/aaa")
-	public ModelAndView AdkkdproductPage() {
-		ModelAndView mv = new ModelAndView("updatesupp");
-		return mv;
-	}
-	@RequestMapping("/test{id}&{pid}")
-	public ModelAndView testPage(@PathVariable("id")String id,@PathVariable("pid")String pid)throws Exception {
-		ModelAndView mv = new ModelAndView("Home");
-
-		return mv;
-	}	
 }

@@ -45,8 +45,14 @@ public class CategoryController {
 	@RequestMapping(value = "/Categoryreg", method = RequestMethod.POST)
 	public ModelAndView Categoryregister(@Valid @ModelAttribute("category") Category cat, BindingResult result,
 			HttpServletRequest request) throws IOException {
+	
 		ModelAndView mv = new ModelAndView("manageall");
-		categoryDAO.save(cat);
+		if(result.hasErrors()){
+			mv.addObject("add", 0);}
+		else{
+			categoryDAO.save(cat);	
+		}
+		
 		mv.addObject("categoryList", categoryDAO.list());
 		mv.addObject("listcat", 0);
 		return mv;

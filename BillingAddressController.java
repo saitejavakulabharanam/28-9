@@ -36,6 +36,20 @@ public class BillingAddressController {
 		return new BillingAddress();
 	}
 
+
+	@RequestMapping(value = "/newaddress{id}")
+	public ModelAndView newaddressPage(@PathVariable("id") String id) {
+		ModelAndView mv = new ModelAndView("billingaddress");
+		List<BillingAddress> myaddresses = new ArrayList<BillingAddress>();
+		myaddresses = billingAddressDAO.myaddresses(id);
+			mv.addObject("add", 4);
+		
+		mv.addObject("billingaddresses", myaddresses);
+		return mv;
+	}
+
+	
+	
 	@RequestMapping(value = "/placeorder{id}")
 	public ModelAndView billingPage(@PathVariable("id") String id) {
 		ModelAndView mv = new ModelAndView("billingaddress");
@@ -56,7 +70,14 @@ public class BillingAddressController {
 	public ModelAndView Categoryregister(@Valid @ModelAttribute("billingAddress") BillingAddress add,
 			BindingResult result, HttpServletRequest request) throws IOException {
 		ModelAndView mv = new ModelAndView("billingaddress");
-		billingAddressDAO.save(add);
+		
+		if(result.hasErrors()){
+			mv.addObject("add", 4);}
+		else{
+			billingAddressDAO.save(add);	
+		}
+		
+	
 		mv.addObject("billingaddresses", billingAddressDAO.myaddresses(add.getUser_Id()));
 		return mv;
 	}

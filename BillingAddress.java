@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -18,14 +19,22 @@ public class BillingAddress {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	/*private String name;*/
+	@NotBlank(message="Specify Name")
+	private String name;
+	@NotBlank(message="Specify House No")
 	private String houseno;
+	@NotBlank(message="Specify Street")
 	private String street;
+	@NotBlank(message="Specify City")
 	private String city;
+	@NotBlank(message="State")
 	private String state;
+	@NotBlank(message="Specify Country")
 	private String country;
+	
 	private int zip;
-	/*private String Contact;*/
+
+	private String contact;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_Id", insertable = false, updatable = false)
@@ -51,6 +60,24 @@ public class BillingAddress {
 
 	public String getHouseno() {
 		return houseno;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+	public String getContact() {
+		return contact;
+	}
+
+	public void setContact(String contact) {
+		this.contact = contact;
 	}
 
 	public void setHouseno(String houseno) {

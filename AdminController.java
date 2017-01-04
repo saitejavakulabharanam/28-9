@@ -14,6 +14,7 @@ import com.teja.backend.model.Product;
 import com.teja.backend.model.Supplier;
 
 @Controller
+@RequestMapping(value="")
 public class AdminController {
 
 	@Autowired

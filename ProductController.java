@@ -69,7 +69,16 @@ public class ProductController {
 	public ModelAndView Productregister(@Valid @ModelAttribute("product") Product prod, BindingResult result,
 			HttpServletRequest request) throws IOException {
 		ModelAndView mv = new ModelAndView("manageall");
-
+		if(result.hasErrors()){
+			mv.addObject("add", 1);
+			mv.addObject("categoryList", categoryDAO.list());
+			mv.addObject("supplierList", supplierDAO.list());
+			mv.addObject("listprod", 0);
+			mv.addObject("listcat", 0);
+			mv.addObject("listsupp", 0);
+			}
+		else{
+				
 		@SuppressWarnings("unused")
 		String filename;
 		@SuppressWarnings("unused")
@@ -80,7 +89,7 @@ public class ProductController {
 		System.out.println("myproduct controller called");
 		MultipartFile image = prod.getImage();
 		Path path;
-		path = Paths.get("E://Eclipse Projects//new//frontend//src//main//webapp//resources//images//products//" + prod.getName()
+		path = Paths.get("E://Eclipse Projects//P1//frontend//src//main//webapp//resources//images//products//" + prod.getName()
 				+ ".jpg");
 
 		System.out.println("Path = " + path);
@@ -104,7 +113,9 @@ public class ProductController {
 		productDAO.save(prod);
 		mv.addObject("listprod", 0);
 		
-		System.out.println("product added");
+		}
+		
+
 		return mv;
 	}
 

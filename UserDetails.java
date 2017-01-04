@@ -12,6 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -27,6 +28,7 @@ public class UserDetails implements Serializable {
 	private String mail;
 	private String contact;
 	private String address;
+	@NotBlank(message="Specify Role")
 	private String role;
 	private String enabled;
 	
