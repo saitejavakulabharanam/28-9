@@ -120,7 +120,7 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/Updateprod&{id}")
-	public ModelAndView UpdatecatPage(@PathVariable("id") String id) throws Exception {
+	public ModelAndView UpdateprodPage(@PathVariable("id") String id) throws Exception {
 		ModelAndView mv = new ModelAndView("manageall");
 		product = productDAO.getbyid(id);
 		mv.addObject("prod", product);
