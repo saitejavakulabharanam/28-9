@@ -48,7 +48,8 @@ public class CategoryController {
 	
 		ModelAndView mv = new ModelAndView("manageall");
 		if(result.hasErrors()){
-			mv.addObject("add", 0);}
+			mv.addObject("add", 0);
+		mv.addObject("listcat", 0);}
 		else{
 			categoryDAO.save(cat);	
 		}
